@@ -18,8 +18,6 @@
     --card: #ffffff;
   }
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
-
-  /* HEADER */
   .site-header { background: var(--navy); position: relative; overflow: hidden; }
   .header-accent { position: absolute; right: -60px; top: -60px; width: 300px; height: 300px; border-radius: 50%; border: 40px solid rgba(201,168,76,0.12); }
   .header-inner { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 2rem; display: flex; align-items: center; gap: 2rem; position: relative; z-index: 2; }
@@ -27,42 +25,28 @@
   .header-text h1 { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; font-weight: 600; margin-bottom: 4px; }
   .header-text p { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
   .gold-tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 500; padding: 3px 12px; border-radius: 20px; margin-top: 8px; letter-spacing: 0.5px; }
-
-  /* NAV */
   .nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
   .nav-inner { max-width: 860px; margin: 0 auto; display: flex; overflow-x: auto; }
   .nav-btn { padding: 13px 20px; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
   .nav-btn:hover { color: var(--navy); }
   .nav-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
-
-  /* MAIN */
   .main { max-width: 860px; margin: 0 auto; padding: 2rem; }
   .page { display: none; }
   .page.active { display: block; }
-
-  /* SECTION TITLE */
   .section-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 2px solid var(--gold-light); position: relative; }
   .section-title::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 48px; height: 2px; background: var(--gold); }
-
-  /* STAT ROW */
   .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
   .stat-box { background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
   .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); }
   .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-
-  /* INTRO BOX */
   .intro-box { background: var(--navy); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
   .intro-box::before { content: '"'; position: absolute; right: 20px; top: -10px; font-size: 120px; color: rgba(201,168,76,0.15); font-family: 'Playfair Display', serif; line-height: 1; }
   .intro-box p { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.8; position: relative; z-index: 1; }
-
-  /* INFO GRID */
   .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
   .info-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; }
   .info-card-label { font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
   .info-card h3 { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
   .info-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
-
-  /* WEEK CARDS */
   .week-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; margin-bottom: 1.25rem; overflow: hidden; }
   .week-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; cursor: pointer; background: var(--card); transition: background 0.2s; border: none; width: 100%; text-align: left; font-family: 'DM Sans', sans-serif; }
   .week-header:hover { background: #f8f7f4; }
@@ -74,8 +58,6 @@
   .week-toggle.open { transform: rotate(180deg); }
   .week-body { display: none; padding: 0 1.25rem 1.25rem; border-top: 0.5px solid var(--border); }
   .week-body.open { display: block; }
-
-  /* LOG SECTIONS */
   .log-section { margin-top: 1rem; }
   .log-section-title { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
   .task-list { list-style: none; }
@@ -84,13 +66,8 @@
   .task-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 7px; }
   .day-label { font-size: 11px; font-weight: 500; color: var(--muted); background: #f0eeea; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; }
   .reflection-box { background: #f8f7f4; border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 14px; font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-top: 0.5rem; }
-
-  /* PLACEHOLDER */
   .placeholder-box { background: #f8f7f4; border: 1px dashed var(--border); border-radius: 10px; padding: 1.5rem; text-align: center; font-size: 13px; color: var(--muted); font-style: italic; }
-
-  /* FOOTER */
   .footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 0.5px solid var(--border); margin-top: 1rem; }
-
   @media (max-width: 600px) {
     .header-inner { flex-direction: column; text-align: center; gap: 1rem; }
     .stat-row { grid-template-columns: repeat(3,1fr); gap: 8px; }
@@ -100,7 +77,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="site-header">
   <div class="header-accent"></div>
   <div class="header-inner">
@@ -114,7 +90,6 @@
   </div>
 </div>
 
-<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <button class="nav-btn active" onclick="showPage('home',this)">Home</button>
@@ -129,8 +104,8 @@
   <div class="page active" id="page-home">
     <div class="stat-row">
       <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Month logged</div></div>
-      <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Days recorded</div></div>
-      <div class="stat-box"><div class="stat-num">6</div><div class="stat-lbl">Tasks completed</div></div>
+      <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Days recorded</div></div>
+      <div class="stat-box"><div class="stat-num">7</div><div class="stat-lbl">Tasks completed</div></div>
     </div>
 
     <p class="section-title">About me</p>
@@ -142,22 +117,22 @@
       <div class="info-card">
         <div class="info-card-label">Student</div>
         <h3>Sharumati Jayaram</h3>
-        <p>Student ID: [295323]<br>Programme: [Bachelor of Accounting with Honours]<br>Universiti Utara Malaysia</p>
+        <p>Student ID: 295323<br>Programme: Bachelor of Accounting with Honours<br>Universiti Utara Malaysia</p>
       </div>
       <div class="info-card">
         <div class="info-card-label">Employer</div>
         <h3>UHY Penang Branch</h3>
-        <p>[Menara BHL Bank, 51-11-F, Jalan Sultan Ahmad Shah, 10050, Pulau Pinang, Penang, 10050]<br>[04-210 0100]<br>[uhy.pg@uhy-my.com]</p>
+        <p>Menara BHL Bank, 51-11-F, Jalan Sultan Ahmad Shah, 10050, Pulau Pinang<br>04-210 0100<br>uhy.pg@uhy-my.com</p>
       </div>
       <div class="info-card">
         <div class="info-card-label">Internship Supervisor</div>
-        <h3>[Mr.Tio Shin Young]</h3>
-        <p>Designation: [Partner of Audit & Assurance]<br>[Email:uhy.pg@uhy-my.com]</p>
+        <h3>Mr. Tio Shin Young</h3>
+        <p>Designation: Partner of Audit &amp; Assurance<br>uhy.pg@uhy-my.com</p>
       </div>
       <div class="info-card">
         <div class="info-card-label">UUM Academic Supervisor</div>
-        <h3>[Prof.Dr.Fathiyyah binti Abu Bakar]</h3>
-        <p>UUM College of Business<br>Tunku Puteri Intan Safinaz<br>[fathiyyah@uum.edu.my]</p>
+        <h3>Prof. Dr. Fathiyyah binti Abu Bakar</h3>
+        <p>UUM College of Business<br>Tunku Puteri Intan Safinaz<br>fathiyyah@uum.edu.my</p>
       </div>
     </div>
   </div>
@@ -172,13 +147,13 @@
         <div class="week-header-left">
           <div class="week-dot">W1</div>
           <div>
-            <div class="week-title">Week 1 — Audit Review & Report Casting</div>
+            <div class="week-title">Week 1 — Audit Review &amp; Report Casting</div>
             <div class="week-date">01 April – 06 April 2025</div>
           </div>
         </div>
-        <span class="week-toggle open">▾</span>
+        <span class="week-toggle">▾</span>
       </button>
-      <div class="week-body open">
+      <div class="week-body">
         <div class="log-section">
           <div class="log-section-title">Daily Tasks</div>
           <ul class="task-list">
@@ -186,28 +161,28 @@
               <span class="task-dot"></span>
               <div>
                 <div class="day-label">01 Apr, Tue</div>
-                Reviewed client audit files cross-checked client comments against the final audit deliverables and end product to ensure all points were addressed before sign-off.
+                Reviewed client audit files — cross-checked client comments against the final audit deliverables and end product to ensure all points were addressed before sign-off.
               </div>
             </li>
             <li>
               <span class="task-dot"></span>
               <div>
                 <div class="day-label">02 Apr, Wed</div>
-                Performed casting of the audit report verified all numerical figures, totals, and cross-references within the audit report to ensure mathematical accuracy and consistency.
+                Performed casting of the audit report — verified all numerical figures, totals, and cross-references within the audit report to ensure mathematical accuracy and consistency.
               </div>
             </li>
             <li>
               <span class="task-dot"></span>
               <div>
                 <div class="day-label">03 Apr, Thu</div>
-                Continued audit report casting and conducted market value assessments of properties (Bricks) assisted in verifying and documenting the market value of property assets as part of the audit evidence.
+                Continued audit report casting and conducted market value assessments of properties (Bricks) — assisted in verifying and documenting the market value of property assets as part of the audit evidence.
               </div>
             </li>
             <li>
               <span class="task-dot"></span>
               <div>
                 <div class="day-label">06 Apr, Sun</div>
-                Continued market value assessment work gathered and organized supporting documents for property valuations to be included in the audit working papers.
+                Continued market value assessment work — gathered and organized supporting documents for property valuations to be included in the audit working papers.
               </div>
             </li>
           </ul>
@@ -215,58 +190,63 @@
         <div class="log-section">
           <div class="log-section-title">What I Learned</div>
           <div class="reflection-box">
-            This week I gained practical exposure to two core audit processes casting and client review. Casting taught me the importance of numerical accuracy in financial reporting; even a small discrepancy must be identified and resolved before the report is finalised. The market value assessment work introduced me to how auditors verify non-financial assets such as property, and the importance of obtaining reliable valuation evidence.
+            This week I gained practical exposure to two core audit processes — casting and client review. Casting taught me the importance of numerical accuracy in financial reporting; even a small discrepancy must be identified and resolved before the report is finalised. The market value assessment work introduced me to how auditors verify non-financial assets such as property, and the importance of obtaining reliable valuation evidence.
           </div>
         </div>
         <div class="log-section">
           <div class="log-section-title">Reflection</div>
           <div class="reflection-box">
-            Starting my first week at UHY Penang was both exciting and humbling. The pace of real audit work is faster than I expected attention to detail is critical at every step. I initially found casting tedious, but I now understand its importance in ensuring the integrity of the final audit report. I look forward to deepening my understanding of audit methodology in the coming weeks.
+            Starting my first week at UHY Penang was both exciting and humbling. The pace of real audit work is faster than I expected — attention to detail is critical at every step. I initially found casting tedious, but I now understand its importance in ensuring the integrity of the final audit report. I look forward to deepening my understanding of audit methodology in the coming weeks.
           </div>
         </div>
       </div>
     </div>
 
- 
-        <div class="week-title">Week 2 — Audit Working Paper Preparation</div>
-        <div class="week-date">07 April – 11 April 2025</div>
-      </div>
-    </div>
-    <span class="week-toggle">▾</span>
-  </button>
-  <div class="week-body">
-    <div class="log-section">
-      <div class="log-section-title">Daily Tasks</div>
-      <ul class="task-list">
-        <li>
-          <span class="task-dot"></span>
+    <!-- WEEK 2 -->
+    <div class="week-card">
+      <button class="week-header" onclick="toggleWeek(this)">
+        <div class="week-header-left">
+          <div class="week-dot">W2</div>
           <div>
-            <div class="day-label">08 Apr, Tue</div>
-            Prepared audit working papers for Shantawood Sdn Bhd (FYE 31 March 2026) — worked on two main files: the General Ledger (GL) extract and the Revenue Lead Schedule (41533).
-            <br><br>
-            <strong style="color:#1a2744; font-size:13px;">General Ledger (STW GL):</strong><br>
-            Extracted all transactions under account 5700/002 (Misc Income – Upkeep, Maintenance &amp; Security) from the main STW ledger and organised them into a dedicated worksheet following the same format as existing GL sub-schedules. Organised the 5700/003 (Factory Rental) worksheet with proper structured formatting including SUM formula totals rows. Performed a company-level analysis of account 5700/003, identifying 16 tenants along with their transaction counts, total credits and total debits — flagging naming inconsistencies for Hong Yun Aluminium across multiple entries.
-            <br><br>
-            <strong style="color:#1a2744; font-size:13px;">Revenue Lead Schedule (41533-2):</strong><br>
-            Updated the 5700/003 Factory Rental section with current year (FY2026) invoice dates and invoice numbers by cross-referencing STW GL data for all tenants. Ensured invoice details, monthly rental amounts, duration (months), and total rental calculations were consistent with GL entries. Maintained all existing formulas, formatting, and cross-sheet references throughout both files.
+            <div class="week-title">Week 2 — Audit Working Paper Preparation</div>
+            <div class="week-date">07 April – 11 April 2025</div>
           </div>
-        </li>
-      </ul>
-    </div>
-    <div class="log-section">
-      <div class="log-section-title">What I Learned</div>
-      <div class="reflection-box">
-        This task gave me hands-on experience in audit working paper preparation — a core skill in external auditing. I learned how General Ledger sub-schedules are structured and how auditors extract and organise transaction data by account code for review. The Revenue Lead Schedule work helped me understand how rental income is traced from the GL to the lead schedule, and the importance of ensuring every figure ties back accurately. Identifying the naming inconsistency for Hong Yun Aluminium also showed me how even small discrepancies in data must be flagged during audit fieldwork.
+        </div>
+        <span class="week-toggle">▾</span>
+      </button>
+      <div class="week-body">
+        <div class="log-section">
+          <div class="log-section-title">Daily Tasks</div>
+          <ul class="task-list">
+            <li>
+              <span class="task-dot"></span>
+              <div>
+                <div class="day-label">08 Apr, Tue</div>
+                Prepared audit working papers for Shantawood Sdn Bhd (FYE 31 March 2026) — worked on two main files: the General Ledger (GL) extract and the Revenue Lead Schedule (41533).
+                <br><br>
+                <strong style="color:#1a2744; font-size:13px;">General Ledger (STW GL):</strong><br>
+                Extracted all transactions under account 5700/002 (Misc Income – Upkeep, Maintenance &amp; Security) from the main STW ledger and organised them into a dedicated worksheet following the same format as existing GL sub-schedules. Organised the 5700/003 (Factory Rental) worksheet with proper structured formatting including SUM formula totals rows. Performed a company-level analysis of account 5700/003, identifying 16 tenants along with their transaction counts, total credits and total debits — flagging naming inconsistencies for Hong Yun Aluminium across multiple entries.
+                <br><br>
+                <strong style="color:#1a2744; font-size:13px;">Revenue Lead Schedule (41533-2):</strong><br>
+                Updated the 5700/003 Factory Rental section with current year (FY2026) invoice dates and invoice numbers by cross-referencing STW GL data for all tenants. Ensured invoice details, monthly rental amounts, duration (months), and total rental calculations were consistent with GL entries. Maintained all existing formulas, formatting, and cross-sheet references throughout both files.
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="log-section">
+          <div class="log-section-title">What I Learned</div>
+          <div class="reflection-box">
+            This task gave me hands-on experience in audit working paper preparation — a core skill in external auditing. I learned how General Ledger sub-schedules are structured and how auditors extract and organise transaction data by account code for review. The Revenue Lead Schedule work helped me understand how rental income is traced from the GL to the lead schedule, and the importance of ensuring every figure ties back accurately. Identifying the naming inconsistency for Hong Yun Aluminium also showed me how even small discrepancies in data must be flagged during audit fieldwork.
+          </div>
+        </div>
+        <div class="log-section">
+          <div class="log-section-title">Reflection</div>
+          <div class="reflection-box">
+            Working on a real client file for the first time was both challenging and rewarding. The level of detail required in audit working papers is much higher than I expected — every formula, format, and figure must be consistent and traceable. I had to be very careful not to break any existing cross-sheet references while making updates. This experience has strengthened my Excel skills and deepened my appreciation for the precision that audit work demands. I look forward to taking on more complex working papers as my confidence grows.
+          </div>
+        </div>
       </div>
     </div>
-    <div class="log-section">
-      <div class="log-section-title">Reflection</div>
-      <div class="reflection-box">
-        Working on a real client file for the first time was both challenging and rewarding. The level of detail required in audit working papers is much higher than I expected — every formula, format, and figure must be consistent and traceable. I had to be very careful not to break any existing cross-sheet references while making updates. This experience has strengthened my Excel skills and deepened my appreciation for the precision that audit work demands. I look forward to taking on more complex working papers as my confidence grows.
-      </div>
-    </div>
-  </div>
-</div>
 
     <!-- WEEK 3 PLACEHOLDER -->
     <div class="week-card">
