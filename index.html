@@ -4,383 +4,478 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Sharumati Jayaram — E-Logbook</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --navy: #1a2744;
-    --gold: #c9a84c;
-    --gold-light: #f5e9cc;
-    --cream: #faf8f4;
-    --text: #2c2c2a;
-    --muted: #6b6b68;
-    --border: rgba(26,39,68,0.12);
-    --card: #ffffff;
-  }
-  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); }
-  .site-header { background: var(--navy); position: relative; overflow: hidden; }
-  .header-accent { position: absolute; right: -60px; top: -60px; width: 300px; height: 300px; border-radius: 50%; border: 40px solid rgba(201,168,76,0.12); }
-  .header-inner { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 2rem; display: flex; align-items: center; gap: 2rem; position: relative; z-index: 2; }
-  .avatar { width: 72px; height: 72px; border-radius: 50%; background: linear-gradient(135deg, var(--gold) 0%, #e8c06a 100%); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 22px; color: var(--navy); font-weight: 600; flex-shrink: 0; border: 3px solid rgba(255,255,255,0.2); }
-  .header-text h1 { font-family: 'Playfair Display', serif; font-size: 24px; color: #fff; font-weight: 600; margin-bottom: 4px; }
-  .header-text p { font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 2px; }
-  .gold-tag { display: inline-block; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 500; padding: 3px 12px; border-radius: 20px; margin-top: 8px; letter-spacing: 0.5px; }
-  .nav { background: #fff; border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
-  .nav-inner { max-width: 860px; margin: 0 auto; display: flex; overflow-x: auto; }
-  .nav-btn { padding: 13px 20px; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; white-space: nowrap; font-family: 'DM Sans', sans-serif; }
-  .nav-btn:hover { color: var(--navy); }
-  .nav-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
-  .main { max-width: 860px; margin: 0 auto; padding: 2rem; }
-  .page { display: none; }
-  .page.active { display: block; }
-  .section-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--navy); margin-bottom: 1.5rem; padding-bottom: 10px; border-bottom: 2px solid var(--gold-light); position: relative; }
-  .section-title::after { content: ''; position: absolute; bottom: -2px; left: 0; width: 48px; height: 2px; background: var(--gold); }
-  .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 2rem; }
-  .stat-box { background: var(--card); border: 0.5px solid var(--border); border-radius: 10px; padding: 1rem; text-align: center; }
-  .stat-num { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--navy); }
-  .stat-lbl { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .intro-box { background: var(--navy); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
-  .intro-box::before { content: '"'; position: absolute; right: 20px; top: -10px; font-size: 120px; color: rgba(201,168,76,0.15); font-family: 'Playfair Display', serif; line-height: 1; }
-  .intro-box p { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.8; position: relative; z-index: 1; }
-  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
-  .info-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; padding: 1.25rem; }
-  .info-card-label { font-size: 11px; font-weight: 500; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
-  .info-card h3 { font-size: 15px; font-weight: 500; color: var(--navy); margin-bottom: 4px; }
-  .info-card p { font-size: 13px; color: var(--muted); line-height: 1.7; }
-  .week-card { background: var(--card); border: 0.5px solid var(--border); border-radius: 12px; margin-bottom: 1.25rem; overflow: hidden; }
-  .week-header { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.25rem; cursor: pointer; background: var(--card); transition: background 0.2s; border: none; width: 100%; text-align: left; font-family: 'DM Sans', sans-serif; }
-  .week-header:hover { background: #f8f7f4; }
-  .week-header-left { display: flex; align-items: center; gap: 12px; }
-  .week-dot { width: 38px; height: 38px; border-radius: 50%; background: var(--gold-light); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 500; color: var(--navy); flex-shrink: 0; }
-  .week-title { font-size: 14px; font-weight: 500; color: var(--navy); }
-  .week-date { font-size: 12px; color: var(--muted); margin-top: 2px; }
-  .week-toggle { font-size: 18px; color: var(--muted); transition: transform 0.25s; display: inline-block; }
-  .week-toggle.open { transform: rotate(180deg); }
-  .week-body { display: none; padding: 0 1.25rem 1.25rem; border-top: 0.5px solid var(--border); }
-  .week-body.open { display: block; }
-  .log-section { margin-top: 1rem; }
-  .log-section-title { font-size: 11px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
-  .task-list { list-style: none; }
-  .task-list li { font-size: 13.5px; color: var(--text); padding: 8px 0; border-bottom: 0.5px solid #f0eeea; display: flex; align-items: flex-start; gap: 10px; line-height: 1.6; }
-  .task-list li:last-child { border-bottom: none; }
-  .task-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); flex-shrink: 0; margin-top: 7px; }
-  .day-label { font-size: 11px; font-weight: 500; color: var(--muted); background: #f0eeea; display: inline-block; padding: 2px 8px; border-radius: 4px; margin-bottom: 4px; }
-  .reflection-box { background: #f8f7f4; border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0; padding: 12px 14px; font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-top: 0.5rem; }
-  .placeholder-box { background: #f8f7f4; border: 1px dashed var(--border); border-radius: 10px; padding: 1.5rem; text-align: center; font-size: 13px; color: var(--muted); font-style: italic; }
-  .footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--muted); border-top: 0.5px solid var(--border); margin-top: 1rem; }
-  @media (max-width: 600px) {
-    .header-inner { flex-direction: column; text-align: center; gap: 1rem; }
-    .stat-row { grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .main { padding: 1.25rem; }
-  }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --navy: #1a2744;
+  --navy-mid: #243259;
+  --gold: #c9a84c;
+  --gold-light: #f5e9cc;
+  --gold-pale: #fdf7ed;
+  --cream: #faf8f4;
+  --text: #2c2c2a;
+  --muted: #6b6b68;
+  --border: rgba(26,39,68,0.10);
+  --card: #ffffff;
+  --success: #3a7d5a;
+  --uhy-green: #2d7a2d;
+}
+@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
+@keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+@keyframes progressFill { from{width:0} to{width:var(--target-width)} }
+
+body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--text); }
+
+/* HEADER */
+.site-header { background:linear-gradient(135deg,#111c38 0%,#1a2744 50%,#243259 100%); position:relative; overflow:hidden; }
+.header-pattern { position:absolute; inset:0; background-image:radial-gradient(circle at 20% 50%,rgba(201,168,76,0.08) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(201,168,76,0.05) 0%,transparent 40%); }
+.header-lines { position:absolute; inset:0; overflow:hidden; }
+.header-lines::before,.header-lines::after { content:''; position:absolute; border:1px solid rgba(201,168,76,0.10); border-radius:50%; }
+.header-lines::before { width:400px; height:400px; right:-100px; top:-150px; }
+.header-lines::after { width:250px; height:250px; right:60px; top:-20px; }
+.header-inner { max-width:900px; margin:0 auto; padding:2.5rem 2rem 1.5rem; display:flex; align-items:center; gap:2rem; position:relative; z-index:2; }
+.avatar { width:76px; height:76px; border-radius:50%; background:linear-gradient(135deg,var(--gold) 0%,#e8c06a 100%); display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:24px; color:var(--navy); font-weight:600; flex-shrink:0; border:3px solid rgba(255,255,255,0.20); box-shadow:0 0 0 6px rgba(201,168,76,0.15); animation:fadeUp 0.6s ease both; }
+.header-text { animation:fadeUp 0.6s 0.1s ease both; }
+.header-text h1 { font-family:'Playfair Display',serif; font-size:26px; color:#fff; font-weight:600; margin-bottom:4px; }
+.header-text .sub { font-size:13px; color:rgba(255,255,255,0.60); margin-bottom:2px; }
+.uhy-logo { height:32px; object-fit:contain; margin-top:10px; filter:brightness(0) invert(1); opacity:0.85; display:block; }
+.gold-tag { display:inline-block; background:var(--gold); color:var(--navy); font-size:11px; font-weight:600; padding:3px 14px; border-radius:20px; margin-top:8px; letter-spacing:0.6px; text-transform:uppercase; }
+
+/* PROGRESS BANNER */
+.progress-banner { background:rgba(255,255,255,0.06); border-top:1px solid rgba(201,168,76,0.15); padding:14px 2rem; animation:fadeUp 0.6s 0.2s ease both; }
+.progress-inner { max-width:900px; margin:0 auto; }
+.progress-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.progress-label { font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.8px; text-transform:uppercase; }
+.progress-pct { font-size:13px; font-weight:600; color:var(--gold); }
+.progress-track { height:6px; background:rgba(255,255,255,0.10); border-radius:99px; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#c9a84c,#f0d07a,#c9a84c); background-size:400px 100%; border-radius:99px; --target-width:36%; animation:progressFill 1.2s 0.8s cubic-bezier(0.22,1,0.36,1) both, shimmer 2s 2s linear infinite; }
+.progress-milestones { display:flex; justify-content:space-between; margin-top:6px; }
+.milestone { font-size:10px; color:rgba(255,255,255,0.35); }
+.milestone.done { color:rgba(201,168,76,0.7); }
+
+/* NAV */
+.nav { background:#fff; border-bottom:1px solid var(--border); position:sticky; top:0; z-index:50; box-shadow:0 2px 12px rgba(26,39,68,0.06); }
+.nav-inner { max-width:900px; margin:0 auto; display:flex; overflow-x:auto; }
+.nav-btn { padding:13px 18px; font-size:13px; font-weight:500; color:var(--muted); background:none; border:none; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; white-space:nowrap; font-family:'DM Sans',sans-serif; flex-shrink:0; }
+.nav-btn:hover { color:var(--navy); background:rgba(26,39,68,0.03); }
+.nav-btn.active { color:var(--navy); border-bottom-color:var(--gold); font-weight:600; }
+.nav-btn.upcoming { color:#bbb; position:relative; }
+.nav-btn.upcoming::after { content:'Soon'; font-size:9px; background:#e8e8e8; color:#999; padding:1px 5px; border-radius:4px; margin-left:5px; font-style:normal; font-weight:500; }
+
+/* MAIN */
+.main { max-width:900px; margin:0 auto; padding:2rem; }
+.page { display:none; }
+.page.active { display:block; animation:fadeUp 0.4s ease both; }
+
+/* SECTION TITLE */
+.section-title { font-family:'Playfair Display',serif; font-size:20px; color:var(--navy); margin-bottom:1.5rem; padding-bottom:10px; border-bottom:2px solid var(--gold-light); position:relative; }
+.section-title::after { content:''; position:absolute; bottom:-2px; left:0; width:48px; height:2px; background:var(--gold); }
+
+/* STATS */
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:2rem; }
+.stat-box { background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:1.1rem; text-align:center; transition:transform 0.2s,box-shadow 0.2s; }
+.stat-box:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(26,39,68,0.08); }
+.stat-num { font-family:'Playfair Display',serif; font-size:30px; color:var(--navy); line-height:1; }
+.stat-lbl { font-size:11px; color:var(--muted); margin-top:4px; }
+
+/* INTRO BOX */
+.intro-box { background:var(--navy); border-radius:14px; padding:1.6rem; margin-bottom:2rem; position:relative; overflow:hidden; }
+.intro-box::before { content:'"'; position:absolute; right:20px; top:-10px; font-size:130px; color:rgba(201,168,76,0.12); font-family:'Playfair Display',serif; line-height:1; }
+.intro-box p { color:rgba(255,255,255,0.85); font-size:14px; line-height:1.85; position:relative; z-index:1; }
+
+/* INFO CARDS */
+.info-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:1rem; margin-bottom:2rem; }
+.info-card { background:var(--card); border:0.5px solid var(--border); border-radius:12px; padding:1.25rem; transition:box-shadow 0.2s; }
+.info-card:hover { box-shadow:0 4px 16px rgba(26,39,68,0.07); }
+.info-card-label { font-size:11px; font-weight:600; color:var(--gold); letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
+.info-card h3 { font-size:15px; font-weight:500; color:var(--navy); margin-bottom:4px; }
+.info-card p { font-size:13px; color:var(--muted); line-height:1.7; }
+
+/* COMPANY PHOTO */
+.company-photo-wrap { margin-bottom:2rem; }
+.company-photo { width:100%; max-height:280px; object-fit:cover; border-radius:14px; border:0.5px solid var(--border); display:block; }
+.photo-caption { font-size:12px; color:var(--muted); text-align:center; margin-top:8px; font-style:italic; }
+
+/* SKILLS */
+.skills-cloud { display:flex; flex-wrap:wrap; gap:8px; margin-top:0.5rem; }
+.skill-tag { background:var(--gold-pale); border:1px solid rgba(201,168,76,0.3); color:#7a6020; font-size:12px; font-weight:500; padding:4px 12px; border-radius:20px; }
+
+/* WEEK CARDS */
+.week-card { background:var(--card); border:0.5px solid var(--border); border-radius:14px; margin-bottom:1.25rem; overflow:hidden; transition:box-shadow 0.2s; }
+.week-card:hover { box-shadow:0 4px 20px rgba(26,39,68,0.07); }
+.week-header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; cursor:pointer; background:var(--card); transition:background 0.2s; border:none; width:100%; text-align:left; font-family:'DM Sans',sans-serif; }
+.week-header:hover { background:#f9f8f5; }
+.week-header-left { display:flex; align-items:center; gap:14px; }
+.week-dot { width:40px; height:40px; border-radius:50%; background:var(--gold-light); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:600; color:var(--navy); flex-shrink:0; border:1.5px solid rgba(201,168,76,0.3); }
+.week-dot.current { background:var(--navy); color:var(--gold); border-color:var(--navy); }
+.week-title { font-size:14px; font-weight:500; color:var(--navy); }
+.week-date { font-size:12px; color:var(--muted); margin-top:2px; }
+.week-badge { font-size:10px; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.4px; margin-left:8px; vertical-align:middle; }
+.week-badge.live { background:#e6f4ec; color:var(--success); }
+.week-badge.done { background:var(--gold-light); color:#7a6020; }
+.week-badge.field { background:#e8f0fe; color:#3b5bdb; }
+.week-toggle { font-size:16px; color:var(--muted); transition:transform 0.25s; display:inline-block; flex-shrink:0; }
+.week-toggle.open { transform:rotate(180deg); }
+.week-body { display:none; padding:0 1.25rem 1.5rem; border-top:0.5px solid var(--border); }
+.week-body.open { display:block; }
+
+/* LOG SECTIONS */
+.log-section { margin-top:1.1rem; }
+.log-section-title { font-size:10px; font-weight:600; letter-spacing:1.2px; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+.task-list { list-style:none; }
+.task-list li { font-size:13.5px; color:var(--text); padding:9px 0; border-bottom:0.5px solid #f0eeea; display:flex; align-items:flex-start; gap:10px; line-height:1.65; }
+.task-list li:last-child { border-bottom:none; }
+.task-dot { width:6px; height:6px; border-radius:50%; background:var(--gold); flex-shrink:0; margin-top:7px; }
+.day-label { font-size:11px; font-weight:500; color:var(--muted); background:#f0eeea; display:inline-block; padding:2px 8px; border-radius:4px; margin-bottom:5px; }
+.sub-label { display:block; font-size:12.5px; font-weight:600; color:var(--navy); margin:8px 0 3px; }
+
+/* FIELD WORK HIGHLIGHT */
+.fieldwork-box { background:linear-gradient(135deg,#eef3ff,#e8f0fe); border:1px solid rgba(59,91,219,0.15); border-radius:10px; padding:14px 16px; margin:10px 0; }
+.fieldwork-box .fw-label { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#3b5bdb; margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.fieldwork-box .fw-label::before { content:'🏢'; font-size:13px; }
+.fieldwork-box p { font-size:13.5px; color:var(--text); line-height:1.7; }
+
+.reflection-box { background:#f9f8f5; border-left:3px solid var(--gold); border-radius:0 8px 8px 0; padding:12px 16px; font-size:13.5px; color:var(--muted); line-height:1.85; }
+
+/* COMING SOON */
+.coming-soon-page { display:flex; flex-direction:column; align-items:center; justify-content:center; padding:4rem 2rem; text-align:center; }
+.coming-soon-page .cs-icon { font-size:48px; margin-bottom:1rem; opacity:0.3; }
+.coming-soon-page h2 { font-family:'Playfair Display',serif; font-size:22px; color:var(--navy); margin-bottom:0.5rem; }
+.coming-soon-page p { font-size:14px; color:var(--muted); max-width:360px; line-height:1.7; }
+.coming-soon-page .start-date { margin-top:1.5rem; background:var(--gold-light); border:1px solid rgba(201,168,76,0.3); padding:8px 20px; border-radius:20px; font-size:13px; font-weight:500; color:#7a6020; }
+
+/* TIMELINE */
+.timeline { position:relative; padding-left:28px; margin-bottom:2rem; }
+.timeline::before { content:''; position:absolute; left:8px; top:8px; bottom:8px; width:2px; background:var(--gold-light); }
+.timeline-item { position:relative; margin-bottom:1.5rem; }
+.timeline-item::before { content:''; position:absolute; left:-24px; top:5px; width:10px; height:10px; border-radius:50%; background:var(--gold); border:2px solid var(--card); box-shadow:0 0 0 2px var(--gold-light); }
+.timeline-item.upcoming::before { background:#ddd; box-shadow:0 0 0 2px #f0eeea; }
+.timeline-month { font-size:11px; font-weight:600; letter-spacing:1px; color:var(--gold); text-transform:uppercase; margin-bottom:4px; }
+.timeline-month.upcoming-label { color:var(--muted); }
+.timeline-desc { font-size:13.5px; color:var(--text); line-height:1.7; }
+
+/* FOOTER */
+.footer { text-align:center; padding:2rem; font-size:12px; color:var(--muted); border-top:0.5px solid var(--border); margin-top:1rem; }
+.footer-gold { color:var(--gold); font-weight:500; }
+
+@media(max-width:640px) { .header-inner{flex-direction:column;text-align:center;gap:1rem} .stat-row{grid-template-columns:repeat(2,1fr)} .main{padding:1.25rem} .uhy-logo{margin:8px auto 0} }
 </style>
 </head>
 <body>
 
+
+<!-- HEADER -->
 <div class="site-header">
-  <div class="header-accent"></div>
+  <div class="header-pattern"></div>
+  <div class="header-lines"></div>
   <div class="header-inner">
     <div class="avatar">SJ</div>
     <div class="header-text">
       <h1>Sharumati Jayaram</h1>
-      <p>Audit Intern &nbsp;·&nbsp; UHY Penang Branch</p>
-      <p>01 April 2025 – Present</p>
-      <span class="gold-tag">E-Logbook · UUM Internship 2025</span>
+      <p class="sub">Audit Intern &nbsp;·&nbsp; UHY Penang Branch</p>
+      <p class="sub">01 April 2025 – Present</p>
+      <img src="data:image/jpeg;base64,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" alt="UHY Logo" class="uhy-logo" />
+      <span class="gold-tag" style="margin-top:8px">E-Logbook · UUM Internship 2025</span>
+    </div>
+  </div>
+  <div class="progress-banner">
+    <div class="progress-inner">
+      <div class="progress-meta">
+        <span class="progress-label">Internship Progress</span>
+        <span class="progress-pct">~36% complete &nbsp;·&nbsp; Week 4 of 11</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+      <div class="progress-milestones">
+        <span class="milestone done">Apr</span>
+        <span class="milestone">May</span>
+        <span class="milestone">Jun</span>
+        <span class="milestone">End Jun</span>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
     <button class="nav-btn active" onclick="showPage('home',this)">Home</button>
     <button class="nav-btn" onclick="showPage('april',this)">April 2025</button>
+    <button class="nav-btn upcoming" onclick="showPage('may',this)">May 2025</button>
+    <button class="nav-btn upcoming" onclick="showPage('june',this)">June 2025</button>
     <button class="nav-btn" onclick="showPage('reflection',this)">Reflection</button>
   </div>
 </nav>
 
 <div class="main">
 
-  <!-- HOME PAGE -->
-  <div class="page active" id="page-home">
-    <div class="stat-row">
-      <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Month logged</div></div>
-      <div class="stat-box"><div class="stat-num">13</div><div class="stat-lbl">Days recorded</div></div>
-      <div class="stat-box"><div class="stat-num">15</div><div class="stat-lbl">Tasks completed</div></div>
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Month logged</div></div>
+    <div class="stat-box"><div class="stat-num">17</div><div class="stat-lbl">Days recorded</div></div>
+    <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Weeks completed</div></div>
+    <div class="stat-box"><div class="stat-num">19</div><div class="stat-lbl">Tasks logged</div></div>
+  </div>
+  <p class="section-title">About me</p>
+  <div class="intro-box">
+    <p>This e-logbook documents my internship journey as an audit intern at UHY (Penang Branch). I am involved in audit fieldwork including audit report preparation, casting, market value assessments, working paper preparation, sales cutoff testing, vouching, client review processes, and document management. This platform records my weekly tasks, learnings, and personal reflections as I grow as an accounting professional.</p>
+  </div>
+  <div class="company-photo-wrap">
+    <img src="data:image/jpeg;base64,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" alt="UHY Team Photo" class="company-photo" />
+    <p class="photo-caption">UHY Penang Branch — Team</p>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">Student</div>
+      <h3>Sharumati Jayaram</h3>
+      <p>Student ID: 295323<br>Programme: Bachelor of Accounting with Honours<br>Universiti Utara Malaysia</p>
     </div>
-
-    <p class="section-title">About me</p>
-    <div class="intro-box">
-      <p>This e-logbook documents my internship journey as an audit intern at UHY (Penang Branch). I am involved in audit fieldwork including audit report preparation, casting, market value assessments, working paper preparation, sales cutoff testing, client review processes, and document management. This platform records my weekly tasks, learnings, and personal reflections as I grow as an accounting professional.</p>
+    <div class="info-card">
+      <div class="info-card-label">Employer</div>
+      <h3>UHY Penang Branch</h3>
+      <p>Menara BHL Bank, 51-11-F, Jalan Sultan Ahmad Shah, 10050, Pulau Pinang<br>04-210 0100<br>uhy.pg@uhy-my.com</p>
     </div>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="info-card-label">Student</div>
-        <h3>Sharumati Jayaram</h3>
-        <p>Student ID: 295323<br>Programme: Bachelor of Accounting with Honours<br>Universiti Utara Malaysia</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Employer</div>
-        <h3>UHY Penang Branch</h3>
-        <p>Menara BHL Bank, 51-11-F, Jalan Sultan Ahmad Shah, 10050, Pulau Pinang<br>04-210 0100<br>uhy.pg@uhy-my.com</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Internship Supervisor</div>
-        <h3>Mr. Tio Shin Young</h3>
-        <p>Designation: Partner of Audit &amp; Assurance<br>uhy.pg@uhy-my.com</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">UUM Academic Supervisor</div>
-        <h3>Prof. Dr. Fathiyyah binti Abu Bakar</h3>
-        <p>UUM College of Business<br>Tunku Puteri Intan Safinaz<br>fathiyyah@uum.edu.my</p>
-      </div>
+    <div class="info-card">
+      <div class="info-card-label">Internship Supervisor</div>
+      <h3>Mr. Tio Shin Young</h3>
+      <p>Designation: Partner of Audit &amp; Assurance<br>uhy.pg@uhy-my.com</p>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">UUM Academic Supervisor</div>
+      <h3>Prof. Dr. Fathiyyah binti Abu Bakar</h3>
+      <p>UUM College of Business<br>Tunku Puteri Intan Safinaz<br>fathiyyah@uum.edu.my</p>
     </div>
   </div>
-
-  <!-- APRIL PAGE -->
-  <div class="page" id="page-april">
-    <p class="section-title">April 2025 — Weekly Log</p>
-
-    <!-- WEEK 1 -->
-    <div class="week-card">
-      <button class="week-header" onclick="toggleWeek(this)">
-        <div class="week-header-left">
-          <div class="week-dot">W1</div>
-          <div>
-            <div class="week-title">Week 1 — STED Audit (Audit Review) &amp; Report Casting</div>
-            <div class="week-date">01 April – 06 April 2025</div>
-          </div>
-        </div>
-        <span class="week-toggle">▾</span>
-      </button>
-      <div class="week-body">
-        <div class="log-section">
-          <div class="log-section-title">Daily Tasks</div>
-          <ul class="task-list">
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">01 Apr, Tue</div>
-                Reviewed client audit files — cross-checked client comments against the final audit deliverables and end product to ensure all points were addressed before sign-off.
-              </div>
-            </li>
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">02 Apr, Wed</div>
-                Performed casting of the audit report — verified all numerical figures, totals, and cross-references within the audit report to ensure mathematical accuracy and consistency.
-              </div>
-            </li>
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">03 Apr, Thu</div>
-                Continued audit report casting and conducted market value assessments of properties (Bricks) — assisted in verifying and documenting the market value of property assets as part of the audit evidence.
-              </div>
-            </li>
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">06 Apr, Sun</div>
-                Continued market value assessment work — gathered and organized supporting documents for property valuations to be included in the audit working papers.
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="log-section">
-          <div class="log-section-title">What I Learned</div>
-          <div class="reflection-box">
-            This week I gained practical exposure to two core audit processes — casting and client review. Casting taught me the importance of numerical accuracy in financial reporting; even a small discrepancy must be identified and resolved before the report is finalised. The market value assessment work introduced me to how auditors verify non-financial assets such as property, and the importance of obtaining reliable valuation evidence.
-          </div>
-        </div>
-        <div class="log-section">
-          <div class="log-section-title">Reflection</div>
-          <div class="reflection-box">
-            Starting my first week at UHY Penang was both exciting and humbling. The pace of real audit work is faster than I expected — attention to detail is critical at every step. I initially found casting tedious, but I now understand its importance in ensuring the integrity of the final audit report. I look forward to deepening my understanding of audit methodology in the coming weeks.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WEEK 2 -->
-    <div class="week-card">
-      <button class="week-header" onclick="toggleWeek(this)">
-        <div class="week-header-left">
-          <div class="week-dot">W2</div>
-          <div>
-            <div class="week-title">Week 2 — Audit Working Papers &amp; Property Development Cost Review</div>
-            <div class="week-date">07 April – 10 April 2025</div>
-          </div>
-        </div>
-        <span class="week-toggle">▾</span>
-      </button>
-      <div class="week-body">
-        <div class="log-section">
-          <div class="log-section-title">Daily Tasks</div>
-          <ul class="task-list">
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">08 Apr, Tue</div>
-                Prepared audit working papers — worked on two main files: the General Ledger (GL) extract and the Revenue Lead Schedule.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">General Ledger (GL):</strong><br>
-                Extracted all transactions under account (Misc Income – Upkeep, Maintenance &amp; Security) from the main ledger and organised them into a dedicated worksheet following the same format as existing GL sub-schedules. Organised the worksheet with proper structured formatting including SUM formula totals rows. Performed a company-level analysis of account, identifying tenants along with their transaction counts, total credits and total debits — flagging naming inconsistencies across multiple entries.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Revenue Lead Schedule:</strong><br>
-                Updated the Factory Rental section with current year invoice dates and invoice numbers by cross-referencing GL data for all tenants. Ensured invoice details, monthly rental amounts, duration (months), and total rental calculations were consistent with GL entries. Maintained all existing formulas, formatting, and cross-sheet references throughout both files.
-              </div>
-            </li>
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">07 Apr – 10 Apr</div>
-                Reviewed and updated the Property Development Cost working paper — cross-referenced the trial balance, general ledger, and supporting schedules to ensure all figures were accurate and complete.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Missing Account Codes:</strong><br>
-                Identified account codes recorded in the trial balance that were not yet reflected in the working paper and added the missing codes under their respective project groups, ensuring classification was consistent with the existing format. For newly added codes with no prior year balance, figures were recorded as current period additions with the carried-forward balance set accordingly.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Reconciliation &amp; Corrections:</strong><br>
-                Reviewed existing entries where the carried-forward balance and trial balance columns were not in agreement — traced each discrepancy to specific account codes and corrected the values to ensure totals reconcile. Updated the subtotal rows for each project group in the current year movement section, ensuring each project's closing balance ties to the corresponding trial balance figure.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Movement Schedule Completeness:</strong><br>
-                Verified that all additions, reclassifications, and reversals were properly captured so that the movement schedule is complete and accurate for the reporting period.
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="log-section">
-          <div class="log-section-title">What I Learned</div>
-          <div class="reflection-box">
-            This week deepened my understanding of audit working paper preparation across two key areas. From the GL and Revenue Lead Schedule work, I learned how rental income is systematically traced from the general ledger to the lead schedule, and how even minor naming inconsistencies must be flagged. The Property Development Cost working paper taught me how auditors reconcile a movement schedule against the trial balance, identifying missing account codes, correcting discrepancies, and ensuring every project's closing balance agrees with the trial balance. I now have a much clearer picture of how financial statements are supported by layered working paper evidence.
-          </div>
-        </div>
-        <div class="log-section">
-          <div class="log-section-title">Reflection</div>
-          <div class="reflection-box">
-            Working across multiple audit files this week was challenging but highly rewarding. The property development cost review required a great deal of patience tracing discrepancies line by line and ensuring every figure reconciled correctly. I learned that audit work demands not just technical knowledge but also a methodical and structured approach to problem-solving. Each correction I made reinforced the importance of accuracy and completeness in financial reporting. I feel more confident in handling working papers and look forward to taking on greater responsibility in the weeks ahead.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WEEK 3 -->
-    <div class="week-card">
-      <button class="week-header" onclick="toggleWeek(this)">
-        <div class="week-header-left">
-          <div class="week-dot">W3</div>
-          <div>
-            <div class="week-title">Week 3 — Document Management, Audit Casting &amp; Sales Cutoff Testing</div>
-            <div class="week-date">14 April – 20 April 2025</div>
-          </div>
-        </div>
-        <span class="week-toggle">▾</span>
-      </button>
-      <div class="week-body">
-        <div class="log-section">
-          <div class="log-section-title">Daily Tasks</div>
-          <ul class="task-list">
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">14 Apr – 16 Apr, Mon–Wed</div>
-                Performed document management and filing duties for various client engagements. Key activities included organising physical audit documents into designated folders following the firm's filing system, setting up new client files for incoming audit engagements, and sorting and arranging paperwork in the correct order for audit report preparation.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Filing &amp; Organisation:</strong><br>
-                Organised physical documents into labelled folders according to client and engagement type. Ensured all supporting documents were placed in the correct sections for easy retrieval during audit review. Set up new client files with the appropriate structure and labelling as required by the firm's standard procedures.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Audit Report Casting:</strong><br>
-                Assisted in casting audit reports for several clients and verified numerical figures, cross-totals, and references within the audit reports to ensure mathematical accuracy and internal consistency before finalisation.
-              </div>
-            </li>
-            <li>
-              <span class="task-dot"></span>
-              <div>
-                <div class="day-label">20 Apr, Sun</div>
-                Performed sales cutoff testing as part of audit fieldwork — extracted and transferred over 100 invoices covering both periods before and after the financial year end date into a structured Excel working paper.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Cutoff Testing Procedure:</strong><br>
-                Reviewed invoices issued in the period immediately before and after the year end to verify that sales transactions were recorded in the correct accounting period. For each invoice, key details including the invoice date, invoice number, and invoice amount were systematically keyed into the Excel cutoff schedule to facilitate further audit analysis and review.
-                <br><br>
-                <strong style="color:#1a2744; font-size:13px;">Purpose of Work:</strong><br>
-                The cutoff schedule serves as audit evidence to confirm that revenue recognised before the year end date relates to goods or services delivered within that period, and that no post-year-end transactions were prematurely recorded — ensuring the completeness and accuracy of the sales figures in the financial statements.
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="log-section">
-          <div class="log-section-title">What I Learned</div>
-          <div class="reflection-box">
-            This week gave me exposure to two very different but equally important aspects of audit work. The document management and filing tasks taught me that proper organisation of physical evidence is critical to audit efficiency — every document must be traceable and accessible. The sales cutoff testing introduced me to one of the most important substantive audit procedures, where I learned that the cutoff assertion ensures revenue is recognised in the correct accounting period. Working through over 100 invoices spanning both sides of the year end deepened my understanding of how auditors assess whether transactions have been recorded too early or too late.
-          </div>
-        </div>
-        <div class="log-section">
-          <div class="log-section-title">Reflection</div>
-          <div class="reflection-box">
-            This week reminded me that audit work involves both analytical and organisational skills both are equally important in delivering quality work. The filing tasks, though routine, reinforced discipline and attention to process. The sales cutoff work required sustained focus while handling a large volume of invoices, and I found the task both repetitive and meaningful, each invoice represents a real transaction that must be verified to ensure the financial statements give a true and fair view. I look forward to completing the cutoff analysis and seeing how the findings contribute to the overall audit conclusion.
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WEEK 4 PLACEHOLDER -->
-    <div class="week-card">
-      <button class="week-header" onclick="toggleWeek(this)">
-        <div class="week-header-left">
-          <div class="week-dot">W4</div>
-          <div>
-            <div class="week-title">Week 4 — Coming soon</div>
-            <div class="week-date">22 April – 25 April 2025</div>
-          </div>
-        </div>
-        <span class="week-toggle">▾</span>
-      </button>
-      <div class="week-body">
-        <div class="log-section">
-          <div class="placeholder-box">This entry will be updated at the end of the week.</div>
-        </div>
-      </div>
-    </div>
-
+  <p class="section-title">Skills Developed So Far</p>
+  <div class="skills-cloud">
+    <span class="skill-tag">Audit Casting</span>
+    <span class="skill-tag">Client File Review</span>
+    <span class="skill-tag">Market Value Assessment</span>
+    <span class="skill-tag">Working Paper Preparation</span>
+    <span class="skill-tag">GL Reconciliation</span>
+    <span class="skill-tag">Trial Balance Analysis</span>
+    <span class="skill-tag">Sales Cutoff Testing</span>
+    <span class="skill-tag">Vouching</span>
+    <span class="skill-tag">Document Management</span>
+    <span class="skill-tag">Excel (Advanced)</span>
+    <span class="skill-tag">Attention to Detail</span>
+    <span class="skill-tag">Time Management</span>
   </div>
-
-  <!-- REFLECTION PAGE -->
-  <div class="page" id="page-reflection">
-    <p class="section-title">Overall Reflection</p>
-    <div class="intro-box">
-      <p>My internship at UHY Penang Branch has given me a meaningful first look into the audit profession. The experience has reinforced my commitment to the field and highlighted the importance of diligence, accuracy, and professional integrity in every task. I am grateful for the opportunity to learn alongside experienced audit professionals and look forward to applying these skills in my future career.</p>
-    </div>
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="info-card-label">Skills Developed</div>
-        <p>Audit casting · Client file review · Market value assessment · Working paper preparation · GL reconciliation · Trial balance analysis · Sales cutoff testing · Document management &amp; filing · Attention to detail · Time management</p>
-      </div>
-      <div class="info-card">
-        <div class="info-card-label">Goals for Remaining Weeks</div>
-        <p>Deepen understanding of audit methodology · Improve speed in working paper preparation · Gain exposure to more audit engagement types · Strengthen reconciliation and cutoff testing skills</p>
-      </div>
-    </div>
-  </div>
-
 </div>
 
+<!-- APRIL -->
+<div class="page" id="page-april">
+  <p class="section-title">April 2025 — Weekly Log</p>
+
+  <!-- W1 -->
+  <div class="week-card">
+    <button class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-dot">W1</div>
+        <div>
+          <div class="week-title">Week 1 — STED Audit (Audit Review) &amp; Report Casting <span class="week-badge done">Done</span></div>
+          <div class="week-date">01 April – 06 April 2025</div>
+        </div>
+      </div>
+      <span class="week-toggle">▾</span>
+    </button>
+    <div class="week-body">
+      <div class="log-section">
+        <div class="log-section-title">Daily Tasks</div>
+        <ul class="task-list">
+          <li><span class="task-dot"></span><div><div class="day-label">01 Apr, Tue</div>Reviewed client audit files — cross-checked client comments against the final audit deliverables and end product to ensure all points were addressed before sign-off.</div></li>
+          <li><span class="task-dot"></span><div><div class="day-label">02 Apr, Wed</div>Performed casting of the audit report — verified all numerical figures, totals, and cross-references within the audit report to ensure mathematical accuracy and consistency.</div></li>
+          <li><span class="task-dot"></span><div><div class="day-label">03 Apr, Thu</div>Continued audit report casting and conducted market value assessments of properties (Bricks) — assisted in verifying and documenting the market value of property assets as part of the audit evidence.</div></li>
+          <li><span class="task-dot"></span><div><div class="day-label">06 Apr, Sun</div>Continued market value assessment work — gathered and organized supporting documents for property valuations to be included in the audit working papers.</div></li>
+        </ul>
+      </div>
+      <div class="log-section"><div class="log-section-title">What I Learned</div><div class="reflection-box">This week I gained practical exposure to two core audit processes — casting and client review. Casting taught me the importance of numerical accuracy in financial reporting; even a small discrepancy must be identified and resolved before the report is finalised. The market value assessment work introduced me to how auditors verify non-financial assets such as property, and the importance of obtaining reliable valuation evidence.</div></div>
+      <div class="log-section"><div class="log-section-title">Reflection</div><div class="reflection-box">Starting my first week at UHY Penang was both exciting and humbling. The pace of real audit work is faster than I expected — attention to detail is critical at every step. I initially found casting tedious, but I now understand its importance in ensuring the integrity of the final audit report. I look forward to deepening my understanding of audit methodology in the coming weeks.</div></div>
+    </div>
+  </div>
+
+  <!-- W2 -->
+  <div class="week-card">
+    <button class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-dot">W2</div>
+        <div>
+          <div class="week-title">Week 2 — Audit Working Papers &amp; Property Development Cost Review <span class="week-badge done">Done</span></div>
+          <div class="week-date">07 April – 10 April 2025</div>
+        </div>
+      </div>
+      <span class="week-toggle">▾</span>
+    </button>
+    <div class="week-body">
+      <div class="log-section">
+        <div class="log-section-title">Daily Tasks</div>
+        <ul class="task-list">
+          <li><span class="task-dot"></span><div><div class="day-label">08 Apr, Tue</div>Prepared audit working papers — worked on two main files: the General Ledger (GL) extract and the Revenue Lead Schedule.<span class="sub-label">General Ledger (GL):</span>Extracted all transactions under account (Misc Income – Upkeep, Maintenance &amp; Security) from the main ledger and organised them into a dedicated worksheet. Performed a company-level analysis identifying tenants along with their transaction counts, total credits and total debits — flagging naming inconsistencies.<span class="sub-label">Revenue Lead Schedule:</span>Updated the Factory Rental section with current year invoice dates and invoice numbers by cross-referencing GL data for all tenants.</div></li>
+          <li><span class="task-dot"></span><div><div class="day-label">07 Apr – 10 Apr</div>Reviewed and updated the Property Development Cost working paper.<span class="sub-label">Missing Account Codes:</span>Identified account codes recorded in the trial balance that were not yet reflected in the working paper and added the missing codes under their respective project groups.<span class="sub-label">Reconciliation &amp; Corrections:</span>Traced each discrepancy to specific account codes and corrected the values to ensure totals reconcile.<span class="sub-label">Movement Schedule Completeness:</span>Verified that all additions, reclassifications, and reversals were properly captured.</div></li>
+        </ul>
+      </div>
+      <div class="log-section"><div class="log-section-title">What I Learned</div><div class="reflection-box">This week deepened my understanding of audit working paper preparation across two key areas. From the GL and Revenue Lead Schedule work, I learned how rental income is systematically traced from the general ledger to the lead schedule. The Property Development Cost working paper taught me how auditors reconcile a movement schedule against the trial balance, identifying missing account codes and correcting discrepancies.</div></div>
+      <div class="log-section"><div class="log-section-title">Reflection</div><div class="reflection-box">Working across multiple audit files this week was challenging but highly rewarding. The property development cost review required a great deal of patience tracing discrepancies line by line. I learned that audit work demands not just technical knowledge but also a methodical and structured approach to problem-solving.</div></div>
+    </div>
+  </div>
+
+  <!-- W3 -->
+  <div class="week-card">
+    <button class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-dot">W3</div>
+        <div>
+          <div class="week-title">Week 3 — Document Management, Audit Casting &amp; Sales Cutoff Testing <span class="week-badge done">Done</span></div>
+          <div class="week-date">14 April – 20 April 2025</div>
+        </div>
+      </div>
+      <span class="week-toggle">▾</span>
+    </button>
+    <div class="week-body">
+      <div class="log-section">
+        <div class="log-section-title">Daily Tasks</div>
+        <ul class="task-list">
+          <li><span class="task-dot"></span><div><div class="day-label">14 Apr – 16 Apr, Mon–Wed</div>Performed document management and filing duties for various client engagements.<span class="sub-label">Filing &amp; Organisation:</span>Organised physical documents into labelled folders according to client and engagement type. Set up new client files with the appropriate structure and labelling.<span class="sub-label">Audit Report Casting:</span>Assisted in casting audit reports for several clients and verified numerical figures, cross-totals, and references to ensure mathematical accuracy.</div></li>
+          <li><span class="task-dot"></span><div><div class="day-label">20 Apr, Sun</div>Performed sales cutoff testing — extracted and transferred over 100 invoices covering both periods before and after the financial year end date into a structured Excel working paper.<span class="sub-label">Cutoff Testing Procedure:</span>Reviewed invoices issued in the period immediately before and after the year end to verify that sales transactions were recorded in the correct accounting period.<span class="sub-label">Purpose of Work:</span>The cutoff schedule serves as audit evidence to confirm revenue recognised before year end relates to goods or services delivered within that period.</div></li>
+        </ul>
+      </div>
+      <div class="log-section"><div class="log-section-title">What I Learned</div><div class="reflection-box">This week gave me exposure to two very different but equally important aspects of audit work. The document management tasks taught me that proper organisation of physical evidence is critical to audit efficiency. The sales cutoff testing introduced me to one of the most important substantive audit procedures — the cutoff assertion ensures revenue is recognised in the correct accounting period.</div></div>
+      <div class="log-section"><div class="log-section-title">Reflection</div><div class="reflection-box">This week reminded me that audit work involves both analytical and organisational skills — both are equally important in delivering quality work. The sales cutoff work required sustained focus while handling a large volume of invoices; each invoice represents a real transaction that must be verified to ensure the financial statements give a true and fair view.</div></div>
+    </div>
+  </div>
+
+  <!-- W4 -->
+  <div class="week-card">
+    <button class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-dot current">W4</div>
+        <div>
+          <div class="week-title">Week 4 — Field Work at Juru Volvo &amp; Sales Vouching <span class="week-badge live">Current</span> <span class="week-badge field">Field Work</span></div>
+          <div class="week-date">22 April – 25 April 2025</div>
+        </div>
+      </div>
+      <span class="week-toggle">▾</span>
+    </button>
+    <div class="week-body">
+      <div class="log-section">
+        <div class="log-section-title">Daily Tasks</div>
+        <ul class="task-list">
+          <li><span class="task-dot"></span>
+            <div>
+              <div class="day-label">22 Apr – 24 Apr, Tue–Thu</div>
+              <div class="fieldwork-box">
+                <div class="fw-label">Field Work — Juru Volvo Company, Juru</div>
+                <p>Attended field work at a Volvo car dealership in Juru as part of the audit engagement. Performed <strong>vouching of sales transactions</strong> — traced recorded car sales in the accounting system back to source documents including official receipts and sales invoices to verify the completeness, accuracy, and validity of revenue.</p>
+              </div>
+              <span class="sub-label">Vouching Procedure — Sales of Vehicles:</span>
+              For each sampled vehicle sale, cross-referenced the sales entry in the ledger against the corresponding official receipt issued to the customer and the sales invoice raised by the dealership. Verified that the sale amount, date, vehicle details, and customer particulars were consistent across all documents. Checked that all receipts and invoices were properly authorised and sequentially numbered with no unexplained gaps.
+              <span class="sub-label">Audit Objective:</span>
+              The vouching exercise provided assurance over the <em>occurrence assertion</em> — confirming that recorded sales transactions actually took place and were supported by valid documentary evidence. It also tested the <em>accuracy assertion</em> by ensuring the amounts recorded agreed to the underlying receipts and invoices.
+            </div>
+          </li>
+          <li><span class="task-dot"></span>
+            <div>
+              <div class="day-label">25 Apr, Fri</div>
+              Returned to the UHY office to organise and document the field work findings — compiled the completed vouching schedule, cross-referenced any exceptions noted during field work, and prepared a summary of the results for senior review.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="log-section">
+        <div class="log-section-title">What I Learned</div>
+        <div class="reflection-box">This was my first experience attending actual field work at a client's premises, and it was an eye-opening week. Vouching car sales at Juru Volvo taught me how auditors gather primary evidence directly from source documents — receipts and invoices are the backbone of substantive testing. I learned that the vouching process is not just about matching numbers; it also involves checking for authorisation, completeness of document trails, and consistency of details. Seeing audit work happen at the client site gave me a much more concrete understanding of how audit procedures connect to real business operations.</div>
+      </div>
+      <div class="log-section">
+        <div class="log-section-title">Reflection</div>
+        <div class="reflection-box">Going out to the field was a highlight of my internship so far. Working at the Volvo dealership in Juru allowed me to experience audit in a completely different environment — outside the office, at the client's premises, going through physical documents in a real business setting. It required a high level of focus and organisation to work through the volume of receipts and invoices efficiently. I felt a great sense of pride and confidence completing my first field work assignment, and it has motivated me to approach the remaining weeks of my internship with even greater dedication and enthusiasm.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end april -->
+
+<!-- MAY -->
+<div class="page" id="page-may">
+  <div class="coming-soon-page">
+    <span class="cs-icon">📋</span>
+    <h2>May 2025 — Coming Soon</h2>
+    <p>This section will be updated as the month progresses. Check back at the end of each week for new entries.</p>
+    <div class="start-date">Starts 28 April 2025</div>
+  </div>
+</div>
+
+<!-- JUNE -->
+<div class="page" id="page-june">
+  <div class="coming-soon-page">
+    <span class="cs-icon">📋</span>
+    <h2>June 2025 — Coming Soon</h2>
+    <p>This section will be updated as the month progresses. Entries will be added week by week through the final stretch of the internship.</p>
+    <div class="start-date">Starts 2 June 2025</div>
+  </div>
+</div>
+
+<!-- REFLECTION -->
+<div class="page" id="page-reflection">
+  <p class="section-title">Overall Reflection</p>
+  <div class="intro-box">
+    <p>My internship at UHY Penang Branch has given me a meaningful first look into the audit profession. The experience has reinforced my commitment to the field and highlighted the importance of diligence, accuracy, and professional integrity in every task. Attending field work at a client's premises has been a particular highlight — seeing audit procedures applied in a real business setting has deepened my appreciation for the profession.</p>
+  </div>
+  <p class="section-title" style="margin-top:1.5rem">Internship Timeline</p>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-month">April 2025</div>
+      <div class="timeline-desc">Weeks 1–4 completed. Core audit tasks including casting, working paper preparation, cutoff testing, and first field work experience — vouching car sales at Juru Volvo. Strong foundation built in audit fieldwork.</div>
+    </div>
+    <div class="timeline-item upcoming">
+      <div class="timeline-month upcoming-label">May 2025</div>
+      <div class="timeline-desc" style="color:var(--muted)">Upcoming — further exposure to audit procedures, expanded client engagements, and deeper involvement in audit finalisation tasks.</div>
+    </div>
+    <div class="timeline-item upcoming">
+      <div class="timeline-month upcoming-label">June 2025</div>
+      <div class="timeline-desc" style="color:var(--muted)">Final month — consolidating experience, contributing to full audit cycles, and completing all internship requirements.</div>
+    </div>
+  </div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-label">Skills Developed</div>
+      <div class="skills-cloud" style="margin-top:4px">
+        <span class="skill-tag">Audit Casting</span>
+        <span class="skill-tag">Cutoff Testing</span>
+        <span class="skill-tag">Vouching</span>
+        <span class="skill-tag">Field Work</span>
+        <span class="skill-tag">Working Papers</span>
+        <span class="skill-tag">Document Filing</span>
+        <span class="skill-tag">GL Reconciliation</span>
+        <span class="skill-tag">Trial Balance Analysis</span>
+      </div>
+    </div>
+    <div class="info-card">
+      <div class="info-card-label">Goals for Remaining Weeks</div>
+      <p>Deepen understanding of audit methodology · Improve speed in working paper preparation · Gain exposure to more audit engagement types · Strengthen reconciliation and cutoff testing skills · Complete all internship report requirements</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- end main -->
+
 <div class="footer">
-  Sharumati Jayaram &nbsp;·&nbsp; UHY Penang Branch &nbsp;·&nbsp; UUM Internship E-Logbook 2025
+  Sharumati Jayaram &nbsp;·&nbsp; <span class="footer-gold">UHY Penang Branch</span> &nbsp;·&nbsp; UUM Internship E-Logbook 2025
 </div>
 
 <script>
-  function showPage(id, btn) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    document.getElementById('page-' + id).classList.add('active');
-    btn.classList.add('active');
-  }
-  function toggleWeek(btn) {
-    const body = btn.nextElementSibling;
-    const tog = btn.querySelector('.week-toggle');
-    const isOpen = body.classList.toggle('open');
-    tog.classList.toggle('open', isOpen);
-  }
+function showPage(id,btn){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+function toggleWeek(btn){
+  const body=btn.nextElementSibling;
+  const tog=btn.querySelector('.week-toggle');
+  const isOpen=body.classList.toggle('open');
+  tog.classList.toggle('open',isOpen);
+}
 </script>
 </body>
 </html>
