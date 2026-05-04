@@ -49,7 +49,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
 .progress-label { font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.8px; text-transform:uppercase; }
 .progress-pct { font-size:13px; font-weight:600; color:var(--gold); }
 .progress-track { height:6px; background:rgba(255,255,255,0.10); border-radius:99px; overflow:hidden; }
-.progress-fill { height:100%; background:linear-gradient(90deg,#c9a84c,#f0d07a,#c9a84c); background-size:400px 100%; border-radius:99px; --target-width:17%; animation:progressFill 1.2s 0.8s cubic-bezier(0.22,1,0.36,1) both, shimmer 2s 2s linear infinite; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#c9a84c,#f0d07a,#c9a84c); background-size:400px 100%; border-radius:99px; --target-width:19%; animation:progressFill 1.2s 0.8s cubic-bezier(0.22,1,0.36,1) both, shimmer 2s 2s linear infinite; }
 .progress-milestones { display:flex; justify-content:space-between; margin-top:6px; }
 .milestone { font-size:10px; color:rgba(255,255,255,0.35); }
 .milestone.done { color:rgba(201,168,76,0.7); }
@@ -183,7 +183,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
     <div class="progress-inner">
       <div class="progress-meta">
         <span class="progress-label">Internship Progress</span>
-        <span class="progress-pct">~17% complete &nbsp;·&nbsp; Week 4 of 26</span>
+        <span class="progress-pct">~19% complete &nbsp;·&nbsp; Week 5 of 26</span>
       </div>
       <div class="progress-track"><div class="progress-fill"></div></div>
       <div class="progress-milestones">
@@ -218,9 +218,9 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
 <div class="page active" id="page-home">
   <div class="stat-row">
     <div class="stat-box"><div class="stat-num">1</div><div class="stat-lbl">Month logged</div></div>
-    <div class="stat-box"><div class="stat-num">17</div><div class="stat-lbl">Days recorded</div></div>
-    <div class="stat-box"><div class="stat-num">4</div><div class="stat-lbl">Weeks completed</div></div>
-    <div class="stat-box"><div class="stat-num">19</div><div class="stat-lbl">Tasks logged</div></div>
+    <div class="stat-box"><div class="stat-num">22</div><div class="stat-lbl">Days recorded</div></div>
+    <div class="stat-box"><div class="stat-num">5</div><div class="stat-lbl">Weeks completed</div></div>
+    <div class="stat-box"><div class="stat-num">20</div><div class="stat-lbl">Tasks logged</div></div>
   </div>
   <p class="section-title">About me</p>
   <div class="intro-box">
@@ -354,9 +354,9 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
   <div class="week-card">
     <button class="week-header" onclick="toggleWeek(this)">
       <div class="week-header-left">
-        <div class="week-dot current">W4</div>
+        <div class="week-dot">W4</div>
         <div>
-          <div class="week-title">Week 4 — Field Work at Juru Volvo &amp; Sales Vouching <span class="week-badge live">Current</span> <span class="week-badge field">Field Work</span></div>
+          <div class="week-title">Week 4 — Field Work at Juru Volvo &amp; Sales Vouching <span class="week-badge done">Done</span> <span class="week-badge field">Field Work</span></div>
           <div class="week-date">22 April – 25 April 2025</div>
         </div>
       </div>
@@ -382,7 +382,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
           <li><span class="task-dot"></span>
             <div>
               <div class="day-label">25 Apr, Fri</div>
-              Returned to the UHY office to organise and document the field work findings and compiled the completed vouching schedule, cross-referenced any exceptions noted during field work, and prepared a summary of the results for senior review.
+              Returned to the UHY office to organise and document the field work findings — compiled the completed vouching schedule, cross-referenced any exceptions noted during field work, and prepared a summary of the results for senior review.
             </div>
           </li>
         </ul>
@@ -393,7 +393,46 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
       </div>
       <div class="log-section">
         <div class="log-section-title">Reflection</div>
-        <div class="reflection-box">Going out to the field was a highlight of my internship so far. Working at the Volvo dealership in Juru allowed me to experience audit in a completely different environment which is outside the office, at the client's premises, going through physical documents in a real business setting. It required a high level of focus and organisation to work through the volume of receipts and invoices efficiently. I felt a great sense of pride and confidence completing my first field work assignment, and it has motivated me to approach the remaining weeks of my internship with even greater dedication and enthusiasm.</div>
+        <div class="reflection-box">Going out to the field was a highlight of my internship so far. Working at the Volvo dealership in Juru allowed me to experience audit in a completely different environment — outside the office, at the client's premises, going through physical documents in a real business setting. It required a high level of focus and organisation to work through the volume of receipts and invoices efficiently. I felt a great sense of pride and confidence completing my first field work assignment, and it has motivated me to approach the remaining weeks of my internship with even greater dedication and enthusiasm.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- W5 -->
+  <div class="week-card">
+    <button class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-dot current">W5</div>
+        <div>
+          <div class="week-title">Week 5 — Completeness Test on General Ledger Transactions <span class="week-badge live">Current</span></div>
+          <div class="week-date">25 April – 29 April 2025</div>
+        </div>
+      </div>
+      <span class="week-toggle">▾</span>
+    </button>
+    <div class="week-body">
+      <div class="log-section">
+        <div class="log-section-title">Daily Tasks</div>
+        <ul class="task-list">
+          <li><span class="task-dot"></span>
+            <div>
+              <div class="day-label">25 Apr – 29 Apr, Fri–Tue</div>
+              Performed a <strong>completeness test</strong> as part of audit substantive procedures — transferred transactions from the General Ledger (GL) into a structured working paper to verify that all transactions recorded in the GL were fully and accurately captured, with no omissions or missing entries.
+              <span class="sub-label">Completeness Test Procedure:</span>
+              Systematically extracted transactions from the client's GL and transferred them into the audit working paper. Cross-checked the total value and count of transactions to ensure that every entry in the GL was accounted for and that the figures tally between the source (GL) and the working paper schedule.
+              <span class="sub-label">Audit Objective:</span>
+              The completeness test provides assurance over the <em>completeness assertion</em> — confirming that all transactions that occurred during the period have been recorded and that nothing has been omitted from the financial statements. Any discrepancy between the GL total and the working paper total would indicate a potential understatement or missing transaction requiring further investigation.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="log-section">
+        <div class="log-section-title">What I Learned</div>
+        <div class="reflection-box">This week deepened my understanding of the completeness assertion, which is one of the key audit assertions tested during substantive procedures. I learned that completeness testing focuses on ensuring nothing has been left out — as opposed to occurrence testing which checks that recorded items actually happened. Transferring transactions from the GL into the working paper also sharpened my Excel skills and reinforced the importance of accuracy when handling large volumes of data.</div>
+      </div>
+      <div class="log-section">
+        <div class="log-section-title">Reflection</div>
+        <div class="reflection-box">The completeness test required a great deal of patience and concentration — with a large number of GL transactions to transfer, I had to maintain focus throughout to ensure every figure was correctly captured and that the totals tally. This task reinforced for me that audit work is not only about identifying errors but also about building systematic evidence that the financial statements are complete and reliable. I feel more confident working with GL data and am proud of the accuracy I maintained throughout the week.</div>
       </div>
     </div>
   </div>
@@ -454,7 +493,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
 <div class="page" id="page-reflection">
   <p class="section-title">Overall Reflection</p>
   <div class="intro-box">
-    <p>My internship at UHY Penang Branch has given me a meaningful first look into the audit profession. The experience has reinforced my commitment to the field and highlighted the importance of diligence, accuracy, and professional integrity in every task. Attending field work at a client's premises has been a particular highlight and seeing audit procedures applied in a real business setting has deepened my appreciation for the profession.</p>
+    <p>My internship at UHY Penang Branch has given me a meaningful first look into the audit profession. The experience has reinforced my commitment to the field and highlighted the importance of diligence, accuracy, and professional integrity in every task. Attending field work at a client's premises has been a particular highlight — seeing audit procedures applied in a real business setting has deepened my appreciation for the profession.</p>
   </div>
   <p class="section-title" style="margin-top:1.5rem">Internship Timeline</p>
   <div class="timeline">
