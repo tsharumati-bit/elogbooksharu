@@ -49,7 +49,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
 .progress-label { font-size:11px; color:rgba(255,255,255,0.55); letter-spacing:0.8px; text-transform:uppercase; }
 .progress-pct { font-size:13px; font-weight:600; color:var(--gold); }
 .progress-track { height:6px; background:rgba(255,255,255,0.10); border-radius:99px; overflow:hidden; }
-.progress-fill { height:100%; background:linear-gradient(90deg,#c9a84c,#f0d07a,#c9a84c); background-size:400px 100%; border-radius:99px; --target-width:19%; animation:progressFill 1.2s 0.8s cubic-bezier(0.22,1,0.36,1) both, shimmer 2s 2s linear infinite; }
+.progress-fill { height:100%; background:linear-gradient(90deg,#c9a84c,#f0d07a,#c9a84c); background-size:400px 100%; border-radius:99px; --target-width:50%; animation:progressFill 1.2s 0.8s cubic-bezier(0.22,1,0.36,1) both, shimmer 2s 2s linear infinite; }
 .progress-milestones { display:flex; justify-content:space-between; margin-top:6px; }
 .milestone { font-size:10px; color:rgba(255,255,255,0.35); }
 .milestone.done { color:rgba(201,168,76,0.7); }
@@ -183,7 +183,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
     <div class="progress-inner">
       <div class="progress-meta">
         <span class="progress-label">Internship Progress</span>
-        <span class="progress-pct">~46% complete &nbsp;·&nbsp; Week 12 of 26</span>
+        <span class="progress-pct">~50% complete &nbsp;·&nbsp; Week 13 of 26</span>
       </div>
       <div class="progress-track"><div class="progress-fill" style="--target-width:46%"></div></div>
       <div class="progress-milestones">
@@ -795,10 +795,10 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
   <div class="week-card">
     <button class="week-header" onclick="toggleWeek(this)">
       <div class="week-header-left">
-        <div class="week-dot current">W12</div>
+        <div class="week-dot">W12</div>
         <div>
-          <div class="week-title">Week 12 — Lead Schedule Reconciliation &amp; Statutory Audit <span class="week-badge live">In Progress</span></div>
-          <div class="week-date">17 June – 24 June 2026</div>
+          <div class="week-title">Week 12 — Lead Schedule Reconciliation &amp; Statutory Audit <span class="week-badge done">Done</span></div>
+          <div class="week-date">17 June – 26 June 2026</div>
         </div>
       </div>
       <span class="week-toggle">▾</span>
@@ -835,6 +835,47 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
               Cleared review points raised on the statutory financial statements, cross-checked figures against the underlying working papers and trial balance, and ensured all required disclosures were properly reflected before the file was considered complete for this stage.
               <span class="sub-label">Audit Purpose:</span>
               Completing the outstanding statutory audit items ensures the financial statements are accurate, fully supported, and ready for sign-off, reinforcing the reliability of the audited accounts for statutory submission.
+            </div>
+          </li>
+          <li><span class="task-dot"></span>
+            <div>
+              <div class="day-label">25 Jun – 26 Jun, Thu–Fri</div>
+              Performed <strong>audit casting</strong> — re-added and verified the numerical totals within the working papers to confirm the accuracy of all figures before finalisation.
+              <span class="sub-label">Task Procedure:</span>
+              Went through each working paper column and row, re-summing all figures independently to check that the totals were arithmetically correct. Any discrepancies identified were traced back to their source and corrected to ensure the schedules were free of mathematical errors.
+              <span class="sub-label">Audit Purpose:</span>
+              Casting is a fundamental accuracy check in audit working papers. Confirming that all figures add up correctly ensures the integrity of the supporting schedules and prevents arithmetic errors from flowing into the financial statements or misrepresenting audit conclusions.
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- W13 -->
+  <div class="week-card">
+    <button class="week-header" onclick="toggleWeek(this)">
+      <div class="week-header-left">
+        <div class="week-dot current">W13</div>
+        <div>
+          <div class="week-title">Week 13 — Audit Casting <span class="week-badge live">In Progress</span></div>
+          <div class="week-date">29 June 2026 onwards</div>
+        </div>
+      </div>
+      <span class="week-toggle">▾</span>
+    </button>
+    <div class="week-body">
+      <div class="log-section">
+        <div class="log-section-title">Daily Tasks</div>
+        <ul class="task-list">
+          <li><span class="task-dot"></span>
+            <div>
+              <div class="day-label">29 Jun, Mon</div>
+              Continued <strong>audit casting</strong> — re-verified numerical totals across working paper schedules to ensure arithmetic accuracy ahead of further review stages.
+              <span class="sub-label">Task Procedure:</span>
+              Independently re-added all figures within the assigned working paper schedules, cross-checking row and column totals to confirm they agreed with one another and with the referenced source documents. Any casting differences found were investigated and corrected.
+              <span class="sub-label">Audit Purpose:</span>
+              Casting checks are performed throughout the audit to ensure that all numerical computations in the working papers are accurate. This safeguards against arithmetic errors propagating into the financial statements and underpins the reliability of the audit evidence compiled.
             </div>
           </li>
         </ul>
@@ -892,7 +933,7 @@ body { font-family:'DM Sans',sans-serif; background:var(--cream); color:var(--te
     </div>
     <div class="timeline-item">
       <div class="timeline-month">June 2026</div>
-      <div class="timeline-desc">Weeks 10–12 in progress. Audit casting (3 Jun), payroll testing (4–5 Jun), inventory recording, file archiving and organisation (8–10 Jun). Weeks 11–12: preparing summaries of Bursa Malaysia corporate announcements, lead schedule reconciliation, and statutory audit fieldwork (22 &amp; 24 Jun).</div>
+      <div class="timeline-desc">Weeks 10–13 in progress. Audit casting (3 Jun), payroll testing (4–5 Jun), inventory recording, file archiving and organisation (8–10 Jun). Weeks 11–12: preparing summaries of Bursa Malaysia corporate announcements, lead schedule reconciliation, and statutory audit fieldwork (22 &amp; 24 Jun). Week 12–13: audit casting (25, 26 &amp; 29 Jun).</div>
     </div>
     <div class="timeline-item upcoming">
       <div class="timeline-month upcoming-label">July 2026</div>
